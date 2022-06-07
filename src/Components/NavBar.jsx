@@ -2,6 +2,9 @@ import React from "react";
 import { Box, Stack, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
+import Avatar from '@mui/material/Avatar';
+
+
 
 const StyledLink = styled(Link)`
 text-decoration: none;
@@ -44,6 +47,19 @@ const NavBar = () => {
             john
           </Stack>
         </Box>
+      
+    <Stack direction="row" justifyContent="flex-end"
+            alignItems="center"
+            sx={{
+              paddingRight: "3rem"
+            }}>
+              <StyledLink to="/EditProfiles">
+                   <Avatar src="/broken-image.jpg" />
+              </StyledLink>
+     
+    </Stack>
+  
+
         <Box variant="div" sx={{ width: "100%", height: "100%" }}>
           <Stack
             direction="row"
