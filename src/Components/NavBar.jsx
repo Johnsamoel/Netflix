@@ -47,6 +47,16 @@ const NavBar = () => {
             john
           </Stack>
         </Box>
+        <Stack direction="row" justifyContent="flex-end"
+            sx={{
+              textDecoration: 'none !important' , color:'black',
+              paddingLeft:"1rem"
+            }}>
+              <StyledLink to="/Profiles">
+                 My Profiles
+              </StyledLink>
+     
+    </Stack>
       
     <Stack direction="row" justifyContent="flex-end"
             alignItems="center"

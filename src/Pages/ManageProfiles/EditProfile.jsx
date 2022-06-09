@@ -12,9 +12,17 @@ function EditProfile() {
             <div className='edit-profile-body'>
                <h1>Edit profile</h1>
                <div className='edit-profile-info'>
-                 <img src='https://www.w3schools.com/howto/howto_css_image_avatar.asp'/>
+                 <img src='https://www.w3schools.com/howto/img_avatar2.png'/>
                  <div className='edit-profile-details'>
+                 <h2> name: Aya{user.FirstName}</h2>
                  <h2> email: {user.Email}</h2>
+               </div>
+               <div className='edit-profile-plans'>
+                 <h3>Plans (Current Plan : Premium)</h3>
+                 <button
+                 className='edit-profile-signOut'>
+                     Sign out
+                 </button>
                </div>
                </div>
             </div>
