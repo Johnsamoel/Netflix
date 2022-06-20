@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { UserLoginHandler } from "../Redux/middleware/UserDataActions";
-import "./style.css";
+import "./Styles/style.css";
 
 const LargeButton = styled(Button)(({ theme }) => ({
   color: "#fff",
@@ -43,8 +43,7 @@ const LoginForm
   const submitonHandler = (event) => {
     event.preventDefault();
     if (FormIsValid) {
-        console.log('data' , formik.values )
-      Dispatch(UserLoginHandler());
+      Dispatch(UserLoginHandler({userName: formik.values.Email , Password: formik.values.Password}));
     }
   };
 
@@ -107,6 +106,7 @@ const LoginForm
         label="Email"
         color="secondary"
         placeholder="Enter a valid Email"
+        InputLabelProps={{ style: { color: "white" } }}
         sx={{
           width: {lg:"450px" , md:'300px' , sm:'auto' , xs:'auto'},
           color: "white",
@@ -125,6 +125,7 @@ const LoginForm
         label="password"
         color="secondary"
         placeholder="Enter a valid password"
+        InputLabelProps={{ style: { color: "white" } }}
         sx={{ width: {lg:"450px" , md:'300px' , sm:'auto' , xs:'auto'}, marginTop: "0.8rem" }}
         onChange={formik.handleChange}
         error={!!formik.errors.Password && formik.touched.Password}

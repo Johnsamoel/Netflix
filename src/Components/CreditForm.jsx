@@ -4,13 +4,12 @@ import styled from "@emotion/styled";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { AuthenticationSliceActions } from "../Redux/AuthenticationSlice";
-import { UserRegisterHandler } from "../Redux/middleware/UserDataActions";
-import "./style.css";
+import { creditCardHandler } from "../Redux/middleware/UserDataActions";
+import "./Styles/style.css";
 
 const LargeButton = styled(Button)(({ theme }) => ({
   minWidth: { lg: "350px", md: "300px", sm: "auto", xs: "auto" },
-  height: { md: "64px", sm: "40px", sx: "auto" },
+  height: { md: "64px", sm: "40px", xs: "auto" },
   padding: {
     lg: "0.75rem 25.333px",
     md: "0.5rem 20px",
@@ -162,12 +161,12 @@ const CreditForm = () => {
     event.preventDefault();
     if (FormIsValid) {
       Dispatch(
-        AuthenticationSliceActions.SetUserData({
-          FirstName: formik.values.FirstName,
-          LastName: formik.values.LastName,
-          CardNumber: formik.values.CardNumber,
-          phoneNumber: formik.values.phoneNumber,
-        })
+        creditCardHandler({
+            FirstName: formik.values.FirstName,
+            LastName: formik.values.LastName,
+            CardNumber: formik.values.CardNumber,
+            phoneNumber: formik.values.phoneNumber,
+          })
       );
     }
   };
@@ -190,6 +189,7 @@ const CreditForm = () => {
         label="FirstName"
         color="secondary"
         placeholder="Enter a valid Name"
+        InputLabelProps={{ style: { color: "white" } }}
         sx={{ width: { lg: "450px", md: "300px", sm: "auto", xs: "auto" } }}
         onChange={formik.handleChange}
         error={!!formik.errors.FirstName && formik.touched.FirstName}
@@ -204,6 +204,7 @@ const CreditForm = () => {
         label="LastName"
         color="secondary"
         placeholder="Enter a valid Name"
+        InputLabelProps={{ style: { color: "white" } }}
         sx={{
           width: { lg: "450px", md: "300px", sm: "auto", xs: "auto" },
           marginTop: "0.8rem",
@@ -228,6 +229,7 @@ const CreditForm = () => {
           label="CardNumber"
           color="secondary"
           placeholder="Enter a valid Name"
+          InputLabelProps={{ style: { color: "white" } }}
           sx={{
             width: { lg: "300px", md: "200px", sm: "150px", xs: "222px" },
             marginTop: "0.8rem",
@@ -246,6 +248,7 @@ const CreditForm = () => {
           label="CVV"
           color="secondary"
           placeholder="CVV"
+          InputLabelProps={{ style: { color: "white" } }}
           sx={{
             width: { lg: "140px", md: "100px", sm: "70px", xs: "222px" },
             marginTop: "0.8rem",
@@ -264,6 +267,7 @@ const CreditForm = () => {
         label="phoneNumber"
         color="secondary"
         placeholder="Enter a valid Number"
+        InputLabelProps={{ style: { color: "white" } }}
         sx={{
           width: { lg: "450px", md: "300px", sm: "auto", xs: "auto" },
           marginTop: "0.8rem",

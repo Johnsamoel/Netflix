@@ -5,8 +5,16 @@ import { Badge, Button, Card, Col, Form, ListGroup, ListGroupItem, Row } from 'r
 import Nav from '../../Components/NavBar'
 import './UpdateProfile.css'
 import userImg from './images/girl.jpg'
+import delImg from './images/delete.png'
+import {useSelector} from 'react-redux'
 
 const UpdateProfile = (props) => {
+ // const classes = useStyles();
+  const user=useSelector((state)=>{
+    return state
+   })
+   console.log(user);
+
   //const history =useHistory();
   // const id=props.match.params.id
   //   console.warn(props.match.params.id)
@@ -98,16 +106,17 @@ const UpdateProfile = (props) => {
     </div> */}
     <div className="container border rounded bg-white mt-5 mb-5">
   <div className="row">
-    <div className="col-md-3 border-right">
+    <div className="col-md-2 border-right">
       <div className="d-flex flex-column align-items-center text-center p-3 py-5">
         <img
-          className="rounded-circle mt-5"
+          className="rounded-circle mt-5 mx-5"
           src={userImg}
           width={90}
         />
-        <span className="font-weight-bold">John Doe</span>
-        <span className="text-black-50">john_doe12@bbb.com</span>
-        <span>United States</span>
+        <span className="font-weight-bold">
+        {user.FirstName}Aya
+        </span>
+        <span className="text-black-50">{user.Email}</span>
       </div>
     </div>
     <div className="col-md-5 border-right">
@@ -115,14 +124,14 @@ const UpdateProfile = (props) => {
         <div className="d-flex justify-content-between align-items-center mb-3">
           <h6 className="text-right">Edit your profile</h6>
         </div>
-        <div className="row mt-2">
+        <div className="row mt-2 ">
           <div className="col-md-6">
             <label className="labels">Name</label>
             <input
               type="text"
               className="form-control"
               placeholder="first name"
-              defaultValue="John"
+              defaultValue="Aya"
             />
           </div>
           <div className="col-md-6">
@@ -130,118 +139,113 @@ const UpdateProfile = (props) => {
             <input
               type="text"
               className="form-control"
-              defaultValue="Doe"
-              placeholder="Doe"
+              defaultValue="Fdawy"
+              placeholder="Surname"
             />
           </div>
         </div>
         <div className="row mt-3">
-          <div className="col-md-12">
-            <label className="labels">Headline</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="headline"
-              defaultValue="UI/UX Developer"
-            />
-          </div>
-          <div className="col-md-12">
-            <label className="labels">Current position</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="headline"
-              defaultValue="UI/UX Developer at Boston"
-            />
-          </div>
-          <div className="col-md-12">
-            <label className="labels">Education</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="education"
-              defaultValue="Boston University"
-            />
-          </div>
+          <label>Language</label>
+        <div className="col-md-12">
+        <select className="selectpicker" data-width="fit">
+  <option data-content='<span class="flag-icon flag-icon-us"></span> English'>
+    English
+  </option>
+  <option data-content='<span class="flag-icon flag-icon-eg"></span> Arabic'>
+    Arabic
+  </option>
+</select>
+
         </div>
-        <div className="row mt-3">
-          <div className="col-md-6">
-            <label className="labels">Country</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="country"
-              defaultValue="USA"
-            />
-          </div>
-          <div className="col-md-6">
-            <label className="labels">State/Region</label>
-            <input
-              type="text"
-              className="form-control"
-              defaultValue="Boston"
-              placeholder="state"
-            />
-          </div>
         </div>
+       <div className="row mt-3">
+          <div className="col-md-12">
+            <label className="labels">Autoplay Controls</label>
+            <>
+  <div className="form-check">
+    <input
+      className="form-check-input"
+      type="checkbox"
+      defaultValue=""
+      id="flexCheckDefault"
+    />
+    <label className="form-check-label" htmlFor="flexCheckDefault">
+    Autoplay next episode in a series on all devices
+    </label>
+  </div>
+  <div className="form-check">
+    <input
+      className="form-check-input"
+      type="checkbox"
+      defaultValue=""
+      id="flexCheckChecked"
+      defaultChecked=""
+    />
+    <label className="form-check-label" htmlFor="flexCheckChecked">
+    Autoplay previews while browsing on all devices
+    </label>
+  </div>
+</>
+
+          </div>
+          
+        </div>
+        
         <div className="mt-5 text-center">
           <button className="btn btn-primary profile-button" type="button">
             Save Profile
           </button>
+          <button className="btn btn-primary profile-button-cancel" type="button">
+            Cancel
+          </button>
         </div>
       </div>
     </div>
-    <div className="col-md-4">
-      <div className="p-3 py-5">
+    <div className="col-md-5">
+      <div className="p-3 py-5 mb-2">
         <div className="d-flex justify-content-between align-items-center experience">
-          <span>Edit Experience</span>
+          <span>Edit History</span>
           <span className="border px-3 p-1 add-experience">
-            <i className="fa fa-plus" />
-            &nbsp;Experience
+            <i className="fa fa-search" />
+            &nbsp;search by date
           </span>
         </div>
-        <div className="d-flex flex-row mt-3 exp-container">
-          <img src="https://i.imgur.com/azSfBM3.png" width={45} height={45} />
-          <div className="work-experience ml-1">
-            <span className="font-weight-bold d-block">
-              Senior UI/UX Designer
-            </span>
-            <span className="d-block text-black-50 labels">Twitter Inc.</span>
-            <span className="d-block text-black-50 labels">
-              March,2017 - May 2020
-            </span>
+        <div className="d-flex flex-row mt-4 exp-container">
+        
+        <div className=" d-flex justify-content-between align-items-center experience ">
+            
+        <input className="form-check-input" type="checkbox" defaultValue="" id="flexCheckChecked" defaultChecked=""/>
+
+        <span className="font-weight-bold p-1">  Video 1 seen  </span>
+        <span className="d-flex px-3 p-1 text-black-50 labels">  March,2017 - May 2020 </span>
+
+        <span className="px-3 p-1 "> <img style={{width:"30px"}} src={delImg}/> </span>
           </div>
         </div>
         <hr />
         <div className="d-flex flex-row mt-3 exp-container">
-          <img
-            src="https://img.icons8.com/color/100/000000/facebook.png"
-            width={45}
-            height={45}
-          />
-          <div className="work-experience ml-1">
-            <span className="font-weight-bold d-block">
-              Senior UI/UX Designer
-            </span>
-            <span className="d-block text-black-50 labels">Facebook Inc.</span>
-            <span className="d-block text-black-50 labels">
-              March,2017 - May 2020
-            </span>
+        
+        <div className=" d-flex justify-content-between align-items-center experience ">
+            
+        <input className="form-check-input" type="checkbox" defaultValue="" id="flexCheckChecked" defaultChecked=""/>
+
+        <span className="font-weight-bold p-1">  Video 1 seen  </span>
+        <span className="d-flex px-3 p-1 text-black-50 labels">  March,2017 - May 2020 </span>
+
+        <span className="px-3 p-1 "> <img style={{width:"30px"}} src={delImg}/> </span>
           </div>
         </div>
         <hr />
         <div className="d-flex flex-row mt-3 exp-container">
-          <img
-            src="https://img.icons8.com/color/50/000000/google-logo.png"
-            width={45}
-            height={45}
-          />
-          <div className="work-experience ml-1">
-            <span className="font-weight-bold d-block">UI/UX Designer</span>
-            <span className="d-block text-black-50 labels">Google Inc.</span>
-            <span className="d-block text-black-50 labels">
-              March,2017 - May 2020
-            </span>
+        
+        <div className=" d-flex justify-content-between align-items-center experience ">
+            
+        <input className="form-check-input" type="checkbox" defaultValue="" id="flexCheckChecked" defaultChecked=""/>
+
+        <span className="font-weight-bold p-1">  Video 1 seen  </span>
+        <span className="d-flex px-3 p-1 text-black-50 labels">  March,2017 - May 2020 </span>
+
+        <span className="px-3 p-1 "> <img style={{width:"30px"}} src={delImg}/> </span>
           </div>
         </div>
       </div>

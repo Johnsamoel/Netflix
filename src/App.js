@@ -5,6 +5,11 @@ import NavBar from './Components/NavBar';
 import CssBaseline from '@mui/material/CssBaseline';
 import {  ThemeProvider } from "@mui/material";
 import { Theme } from './styles/Theme';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import AuthenticationSliceActions from './Redux/AuthenticationSlice';
+
+
 
 
 const Home = lazy(() =>  import('./Pages/Home') )
@@ -20,10 +25,25 @@ const EditProfile = lazy( () => import('./Pages/ManageProfiles/EditProfile') )
 const Profiles = lazy( () => import('./Pages/ManageProfiles/Profiles') )
 const ManageProfile = lazy( () => import('./Pages/ManageProfiles/ManageProfile') )
 const PlanDetails = lazy( () => import('./Pages/PlanDetails') )
+<<<<<<< HEAD
 const UpdateProfile =lazy(()=>import('./Pages/ManageProfiles/UpdateProfile')) 
+=======
+const Choosedevice = lazy ( () => import('./Pages/ChooseDevice') )
+>>>>>>> 070e2bf85bd288e4489f1f6eff4059fe79d7d55a
 
 
 const  App = () => {
+  const Dispatch =  useDispatch()
+useEffect(() => {
+const tokenData = localStorage.getItem('token');
+
+if(tokenData){
+  Dispatch(AuthenticationSliceActions.logIn(tokenData))}
+
+}, [Dispatch])
+
+
+
   return (
      <>
      <ThemeProvider theme={Theme}>
@@ -48,6 +68,7 @@ const  App = () => {
       <Route  path='/UpdateProfile' element={<UpdateProfile/>}  />
       <Route  path='/payment' element={<Payment/>}  />
       <Route  path='/creditCard' element={<CreditCard/>}  />
+      <Route  path='/choosedevice' element={<Choosedevice/>}  />
       <Route  path='*' element={<NotFound />}  />
     </Routes>
     </BrowserRouter>

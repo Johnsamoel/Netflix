@@ -1,11 +1,11 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography  } from "@mui/material";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { AuthenticationSliceActions } from "../Redux/AuthenticationSlice";
-import "./style.css";
+import { useDispatch , useSelector } from "react-redux";
+import {UserRegisterHandler} from '../Redux/middleware/UserDataActions'
+import "./Styles/style.css"
 
 const LargeButton = styled(Button)(({ theme }) => ({
   color: "#fff",
@@ -33,22 +33,24 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const RegisterForm = () => {
+const RegisterForm = ({classes}) => {
   const [EmailIsValid, setEmailIsValid] = useState(false);
   const [PasswordIsValid, setPasswordIsValid] = useState(false);
   const [FormIsValid, setFormIsValid] = useState(false);
   const Dispatch = useDispatch();
+  const requestError = useSelector((state) => state.error);
 
   const submitonHandler = (event) => {
     event.preventDefault();
     if (FormIsValid) {
+      console.log('com dispatch');  
       Dispatch(
-        AuthenticationSliceActions.SignUp({
+        UserRegisterHandler({
           Email: formik.values.Email,
           Password: formik.values.Password,
         })
       );
-    }
+    } 
   };
 
   const validate = (values) => {
@@ -110,9 +112,14 @@ const RegisterForm = () => {
         label="Email"
         color="secondary"
         placeholder="Enter a valid Email"
+        InputLabelProps={{ style: { color: "white" } }}
+
         sx={{
           width: {lg:"450px" , md:'300px' , sm:'auto' , xs:'auto'},
           color: "white",
+          '&::placeholder':{
+            color:'white'
+          }
         }}
         onChange={formik.handleChange}
         error={!!formik.errors.Email && formik.touched.Email}
@@ -128,6 +135,7 @@ const RegisterForm = () => {
         label="password"
         color="secondary"
         placeholder="Enter a valid password"
+        InputLabelProps={{ style: { color: "white" } }}
         sx={{ width: {lg:"450px" , md:'300px' , sm:'auto' , xs:'auto'}, marginTop: "0.8rem" }}
         onChange={formik.handleChange}
         error={!!formik.errors.Password && formik.touched.Password}
@@ -137,14 +145,18 @@ const RegisterForm = () => {
         FormHelperTextProps={{ style: { backgroundColor: "transparent" } }}
       />
 
+
+
       <LargeButton type="submit" size="large" onClick={submitonHandler} sx={{  minWidth: {lg:'450px' ,md:'300px' , sm:'auto' , xs:'auto'} ,   height: { md:'64px' , sm:'40px' , sx:'auto'} ,  padding: { lg:"0.75rem 25.333px" , md:'0.5rem 20px' , sm:'0.3rem 15px' , sx:'0.1rem 5px' } }} >
         <StyledLink
-          to={FormIsValid && "/chooseplan"}
+          to={FormIsValid && !requestError && "/chooseplan"}
           style={{ color: "white", textDecoration: "none" }}
         >
           Next
         </StyledLink>
       </LargeButton>
+
+      { requestError && <Typography variant='body1' component='p' >{requestError}</Typography>}
     </Box>
   );
 };

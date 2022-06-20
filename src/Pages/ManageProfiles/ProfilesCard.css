@@ -47,7 +47,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 }
 .container .card{
 	width: 300px;
@@ -59,6 +59,10 @@
 	/* box-shadow: 0px 0px 22px rgba(0, 0, 0, 0.37); */
 	margin:15px;
     border-radius: 50%;
+}
+Button{
+	position: absolute;
+	margin:15px;
 }
 .card::after{
 	content: " ";
@@ -131,3 +135,4 @@
 	/* background-color: rgb(0, 81, 255); */
 	color: #fff;
 }
+

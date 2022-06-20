@@ -7,22 +7,27 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
  import {useSelector} from 'react-redux'
  import userImg from './images/girl.jpg';
+ import { useEffect } from 'react';
+ import axios from 'axios';
+ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
  
- import Card from '@material-ui/core/Card';
- import CardActionArea from '@material-ui/core/CardActionArea';
- import CardActions from '@material-ui/core/CardActions';
- import CardContent from '@material-ui/core/CardContent';
- import CardMedia from '@material-ui/core/CardMedia';
- import Typography from '@material-ui/core/Typography';
- 
- const useStyles = makeStyles({
-   root: {
-     maxWidth: 345,
-   },
-   media: {
-     height: 140,
-   },
- });
+ const LargeButton = styled(Button)(({ theme }) => ({
+  color: "#12C6B2",
+  border: "2px solid #12C6B2",
+  backgroundColor: "#transparent",
+  fontWeight: "300px",
+  fontSize: "24px",
+  minHeight:  "64px" ,
+  borderRadius: "4px",
+  padding: "0.75rem 10px",
+  Width: "10%" ,
+  marginTop: "20px",
+  marginLeft:"38rem",
+  "&:hover": {
+    backgroundColor: "#12C6B2",
+    color:"white"
+  },
+}));
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -35,17 +40,100 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const Profiles= () => {
-  const classes = useStyles();
+const ManageProfile= () => {
+ 
   const user=useSelector((state)=>{
          return state
         })
         console.log(user)
+
+  useEffect(()=>{
+    axios.get("https://jsonplaceholder.typicode.com/users").then(response=>{
+      console.log(response.data);
+     // setUsers(response.data)
+    })
+  },[])
   return (
     <>
     <section className="contain">
-    <div style={{backgroundColor:"red" , width:"50%"}}>
+  <div className="main">
+    <h3 className="heading">
+      <span>Who's Watching?</span>
+    </h3>
+   
+    <div className="container">
+   
+      <div className="card">
+        
+        <img src={userImg} alt="user" />
+        
+     
+      
+        <div className="details">
+          <h3>aya</h3>
+          <p>Software Developer</p>
+          <div className="social-links">
+            <a href="#">
+              <i className="uil uil-facebook-f" />
+            </a>
+            <a href="">
+              <i className="uil uil-instagram" />
+            </a>
+            <a href="">
+              <i className="uil uil-twitter-alt" />
+            </a>
+            <a href="">
+              <i className="uil uil-whatsapp" />
+            </a>
+          </div>
+        </div>
       </div>
+      <div className="card">
+      <img src={userImg} alt="user" />
+        <div className="details">
+          <h3>Sandeep</h3>
+          <p>App Developer</p>
+          <div className="social-links">
+            <a href="#">
+              <i className="uil uil-facebook-f" />
+            </a>
+            <a href="">
+              <i className="uil uil-instagram" />
+            </a>
+            <a href="">
+              <i className="uil uil-twitter-alt" />
+            </a>
+            <a href="">
+              <i className="uil uil-whatsapp" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="card">
+      <img src={userImg} alt="user" />
+        <div className="details">
+          <h3>Nitin</h3>
+          <p>Website Developer</p>
+          <div className="social-links">
+            <a href="#">
+              <i className="uil uil-facebook-f" />
+            </a>
+            <a href="">
+              <i className="uil uil-instagram" />
+            </a>
+            <a href="">
+              <i className="uil uil-twitter-alt" />
+            </a>
+            <a href="">
+              <i className="uil uil-whatsapp" />
+            </a>
+          </div>
+         
+        </div>
+      </div>
+     
+    </div>
+  </div>
   
     </section>
     
@@ -53,4 +141,4 @@ const Profiles= () => {
   );
 };
 
-export default Profiles;
+export default ManageProfile;
