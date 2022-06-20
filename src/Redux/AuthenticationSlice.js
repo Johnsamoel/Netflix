@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , FirstName:"" , LastName:"" , CardNumber:"" , phoneNumber:''};
+const initialState = { IsloggedIn: false, Email: "", Password: "", token: "" , FirstName:"" , LastName:"" , CardNumber:"" , phoneNumber:'' , userPlan: '' , planChosen: false};
 
 export const AuthenticationSlice = createSlice({
   name: "authentication",
@@ -31,6 +31,13 @@ export const AuthenticationSlice = createSlice({
       state.IsloggedIn = false;
       state.token = "";
     },
+    setUserPlan: (state , {payload}) => {
+      if(payload) {
+        state.userPlan = payload
+        state.planChosen = true
+       
+      }
+    }
   },
 });
 

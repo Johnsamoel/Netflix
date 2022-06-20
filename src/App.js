@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import {  ThemeProvider } from "@mui/material";
 import { Theme } from './styles/Theme';
 
+
 const Home = lazy(() =>  import('./Pages/Home') )
 const Login = lazy(() =>  import('./Pages/Login') )
 const Register = lazy(() =>  import('./Pages/Register') )
@@ -15,8 +16,12 @@ const Plans = lazy( () => import('./Pages/Plans') )
 const ChoosePlan = lazy( () => import('./Pages/ChoosePlan') )
 const Payment = lazy( () => import('./Pages/Payment') )
 const CreditCard = lazy( () => import('./Pages/CreditCard') )
-const EditProfiles = lazy( () => import('./Pages/ManageProfiles/EditProfile') )
+const EditProfile = lazy( () => import('./Pages/ManageProfiles/EditProfile') )
 const Profiles = lazy( () => import('./Pages/ManageProfiles/Profiles') )
+const ManageProfile = lazy( () => import('./Pages/ManageProfiles/ManageProfile') )
+const PlanDetails = lazy( () => import('./Pages/PlanDetails') )
+const UpdateProfile =lazy(()=>import('./Pages/ManageProfiles/UpdateProfile')) 
+
 
 const  App = () => {
   return (
@@ -32,11 +37,15 @@ const  App = () => {
       <Route  path='/Login' element={<Login />}  />
       <Route  path='/register' element={<Register />}  />
       <Route  path='/setup' element={<Setup />}  />
+      <Route  path='/plandetails' element={<PlanDetails />}  />
       <Route  path='/plan' element={<Plans />}  />
       <Route  path='/Chooseplan' element={<ChoosePlan />}  />
       <Route  path='/Creditcard' element={<CreditCard/>}  />
-      <Route  path='/EditProfiles' element={<EditProfiles/>}  />
+      
       <Route  path='/Profiles' element={<Profiles/>}  />
+      <Route  path='/EditProfile' element={<EditProfile/>}  />
+      <Route  path='/ManageProfile' element={<ManageProfile/>}  />
+      <Route  path='/UpdateProfile' element={<UpdateProfile/>}  />
       <Route  path='/payment' element={<Payment/>}  />
       <Route  path='/creditCard' element={<CreditCard/>}  />
       <Route  path='*' element={<NotFound />}  />
